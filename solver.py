@@ -10,8 +10,20 @@ board = [
         [0, 7, 0, 3, 0, 0, 0, 1, 2],
         [1, 2, 0, 0, 0, 7, 4, 0, 0],
         [0, 4, 9, 2, 0, 6, 0, 0, 7]
+ 
     ]
  
+def valid(bo, num, pos):
+    # checking the row
+    for i in range(len(bo[0])):
+        if bo[pos[0]][i] == num and pos[1] != i:
+            return False
+        
+    #checking the column 
+    for i in range(len(bo)):
+        if bo[i][pos[1]] == num and pos[0] != i:
+            return False
+
   # checking the row
   
 def valid(bo, num, pos):
@@ -19,13 +31,13 @@ def valid(bo, num, pos):
         if bo[pos[0]][i] == num and pos[1] != i:
             return False
         
-#check the colum (vertically)
+#checking the column (vertically)
 
     for i in range(len(bo)):
          if bo[i][pos[1]] == num and pos[0] != i:
             return False
         
-#check the cube 
+#checking the cube 
 
     box_x = pos[1] // 3
     box_y = pos[0] // 3
