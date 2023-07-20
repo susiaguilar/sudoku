@@ -15,10 +15,10 @@ board = [
 
 def solve(bo):
     find = find_empty(bo)
-    if not find:
-        return True
-    else:
+    if find:
         row, col = find
+    else:
+        return True
         
     for i in range(1, 10):
         if valid(bo, i, (row, col)):
@@ -33,13 +33,13 @@ def solve(bo):
  
 def valid(bo, num, pos):
     # checking the row
-    for i in range(len(bo[0])):
+    for i in range(0, len(bo)):
         if bo[pos[0]][i] == num and pos[1] != i:
             return False
         
     #checking the column 
-    for i in range(len(bo)):
-        if bo[i][pos[1]] == num and pos[0] != i:
+    for i in range(0, len(bo)):
+        if bo[i][pos[1]] == num and pos[1] != i:
             return False
         
         # checking the box now
@@ -52,30 +52,6 @@ def valid(bo, num, pos):
                 return False
             
     return True
-
-
-  # checking the row
-  
-def valid(bo, num, pos):
-    for i in range(len(bo[0])):
-        if bo[pos[0]][i] == num and pos[1] != i:
-            return False
-        
-#checking the column (vertically)
-
-    for i in range(len(bo)):
-         if bo[i][pos[1]] == num and pos[0] != i:
-            return False
-        
-#checking the cube 
-
-    box_x = pos[1] // 3
-    box_y = pos[0] // 3
-    
-    for i in range(box_y * 3, box_y * 3 + 3):
-        for j in range(box_x * 3, box_x * 3 + 3):
-            if bo[i][j] == num and (i,j) != pos:
-                return False
          
     
             
@@ -96,7 +72,7 @@ def print_board(bo):
              
                  print(str(bo[i][j]) + " ", end="")
                     
-print_board(board)
+
 
 
 def find_empty(bo):
@@ -107,4 +83,7 @@ def find_empty(bo):
     return None
 
             
-            
+print_board(board)
+solve(board)
+print("..........................")
+print_board(board) 
